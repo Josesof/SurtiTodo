@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="index:: head">
+</head>
+
+
+<link rel="stylesheet"
+	href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+
+<!-- Required meta tags -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
+
+<!-- Datatables -->
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.css">
+<script
+	src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.js"></script>
+
+
+
+<style>
+#mydatatable-modal tfoot input {
+	width: 100% !important;
+}
+
+#mydatatable-modal tfoot {
+	display: table-header-group !important;
+}
+</style>
+
+<body>
+
+
+	<div class="wrapper">
+		<header th:replace="index :: menu"></header>
+
+
+
+
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle d-flex"> <i
+					class="hamburger align-self-center"></i>
+				</a>
+
+
+
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item dropdown"><a
+							class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
+							data-toggle="dropdown">
+								<div class="position-relative">
+									<i class="align-middle" data-feather="bell"></i> <span
+										class="indicator">1</span>
+								</div>
+						</a></li>
+						<li class="nav-item dropdown"><a
+							class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
+							data-toggle="dropdown">
+								<div class="position-relative">
+									<i class="align-middle" data-feather="bell"></i> <span
+										class="indicator">2</span>
+								</div>
+						</a></li>
+						<li class="nav-item dropdown"><a
+							class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
+							data-toggle="dropdown">
+								<div class="position-relative">
+									<i class="align-middle" data-feather="bell"></i> <span
+										class="indicator">33</span>
+								</div>
+						</a></li>
+						<li class="nav-item dropdown"><a
+							class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
+							data-toggle="dropdown">
+								<div class="position-relative">
+									<i class="align-middle" data-feather="bell"></i> <span
+										class="indicator">4</span>
+								</div>
+						</a></li>
+
+
+					</ul>
+				</div>
+			</nav>
+
+			<main class="content">
+				<div class="container-fluid p-0">
+
+					<h1 class="h3 mb-3">Orden de compra</h1>
+
+					<div class="row">
+						<div class="col-md-3 col-xl-2">
+
+							<div class="card">
+
+
+								<div class=" card-header list-group list-group-flush"
+									role="tablist">
+									<a class="list-group-item list-group-item-action "
+										data-toggle="list" href="#account" role="tab"> Informacion
+									</a> <a class="list-group-item list-group-item-action"
+										data-toggle="list" href="#logistica" role="tab"> Logistica
+									</a>
+
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-9 col-xl-10">
+
+							<div class="tab-content">
+								<div class="tab-pane fade show active" id="account"
+									role="tabpanel">
+
+									<div class="card">
+										<div class="card-header">
+
+											<h5 class="card-title mb-0">
+												<strong> Informacion </strong>
+											</h5>
+										</div>
+										<div class="card-body">
+											<form>
+												<div class="row">
+												
+
+													<div class="row">
+														<div class="mb-3 col-md-3">
+															<label class="form-label" for="inputFirstName">Cliente</label>
+
+															<input type="text" class="form-control"
+																id="inputFirstName" placeholder="">
+
+														</div>
+
+														<div class="mb-3 col-md-1">
+															<label class="form-label" for="inputFirstName">Id</label>
+															<a type="button"
+																class="btn btn-success btn-xs float-right mx-2"
+																data-toggle="modal" data-target="#mydatatable"
+																th:href="@{/orden}"> </a>
+														</div>
+
+
+														<div class="mb-3 col-md-3">
+															<label class="form-label" for="inputLastName"> Nº
+																Catalogo </label> <select class=" form-control custom-select"
+																id="pais" required>
+																<option selected disabled value="">Seleccione...</option>
+																<option>...</option>
+															</select>
+														</div>
+														<div class="mb-3 col-md-3">
+															<label class="form-label" for="inputLastName">
+																Catalogo </label> <input type="text" class="form-control"
+																id="inputFirstName" placeholder="">
+														</div>
+													</div>
+													
+													
+													
+
+
+													<div class="row">
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputUsername">Nombre
+															</label> <input type="text" class="form-control"
+																id="inputUsername" placeholder="">
+														</div>
+
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputUsername">Estado
+																del documento</label> <input type="text" class="form-control"
+																id="inputUsername" placeholder="">
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputUsername">Persona
+																de contacto</label> <select class=" form-control custom-select"
+																id="pais" required>
+																<option selected disabled value="">Seleccione...</option>
+																<option>...</option>
+															</select>
+														</div>
+
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputUsername">fecha
+																de contabilizacion</label> <input type="date"
+																class="form-control" id="inputUsername" placeholder="">
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputUsername">Numero
+																de referencia </label> <input type="text" class="form-control"
+																id="inputUsername" placeholder="">
+														</div>
+
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputUsername">Fecha
+																de digitacion</label> <input type="date" class="form-control"
+																id="inputUsername" placeholder="">
+														</div>
+													</div>
+
+													<div class="mb-3 col-md-6">
+														<label class="form-label" for="inputUsername">Fecha
+															del documento</label> <input type="date" class="form-control"
+															id="inputUsername" placeholder="">
+													</div>
+
+
+
+												</div>
+
+
+											</form>
+
+										</div>
+									</div>
+
+									<div class="card">
+										<div class="card-header">
+
+											<h5 class="card-title mb-0">Contenido</h5>
+										</div>
+										<div class="card-body-responsive "
+											style="overflow: scroll; height: 300px; width: 1200px;">
+											<table class="table ">
+												<thead>
+													<tr>
+														<th>Numero Referencia</th>
+														<th>Descripcion articulo</th>
+														<th>cantidad</th>
+														<th>Precio unit</th>
+														<th>Total(ML)</th>
+														<th>Codigo oferta</th>
+														<th>Codigo cliente</th>
+														<th>Nombre Cliente</th>
+														<th>Numero Documento</th>
+														<th>Fecha Documento</th>
+														<th>Fecha Vencimiento</th>
+														<th>Estado Documento</th>
+														<th>Comentarios</th>
+														<th>Descuento Documento</th>
+														<th>Valor Total Documento</th>
+														<th>Comentarios</th>
+														<th>Serie Facturacion</th>
+
+													</tr>
+												</thead>
+												<tbody>
+
+
+												</tbody>
+											</table>
+
+										</div>
+									</div>
+									<hr>
+
+									<!-- Card inferior-->
+									<div class="card">
+										<div class="card-body">
+											<div class="row">
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputLastName">
+														Empleado de ventas</label> <select
+														class=" form-control custom-select" id="pais" required>
+														<option selected disabled value="">Seleccione...</option>
+														<option>...</option>
+													</select>
+												</div>
+
+
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputFirstName">Total
+														antes del descuento</label> <input type="text"
+														class="form-control" id="inputFirstName" placeholder="">
+												</div>
+
+											</div>
+											<div class="row">
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputLastName">
+														Comentario </label>
+													<textarea class="form-control" name="" id="" cols="30"
+														rows="5"></textarea>
+												</div>
+
+												<div class="mb-3 col-md-2">
+													<label class="form-label" for="inputFirstName">Descuento
+														%</label> <input type="text" class="form-control"
+														id="inputFirstName" placeholder="">
+												</div>
+												<div class="mb-3 col-md-4">
+													<label class="form-label" for="inputFirstName">Valor</label>
+													<input type="text" class="form-control" id="inputFirstName"
+														placeholder="">
+												</div>
+
+											</div>
+
+											<div class="row">
+												<div class="mb-3 col-md-6"></div>
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputFirstName">Impuestos</label>
+													<input type="text" class="form-control" id="inputFirstName"
+														placeholder="">
+												</div>
+
+											</div>
+
+											<div class="row">
+												<div class="mb-3 col-md-6"></div>
+
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputFirstName">Cantidad
+														Total</label> <input type="text" class="form-control"
+														id="inputFirstName" placeholder="">
+												</div>
+											</div>
+											<div class="row">
+												<div class="mb-3 col-md-6"></div>
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputFirstName">Total
+														del documento</label> <input type="text" class="form-control"
+														id="inputFirstName" placeholder="">
+												</div>
+											</div>
+										</div>
+
+
+									</div>
+
+								</div>
+
+								<!--Logistica-->
+								<div class="tab-pane fade" id="logistica" role="tabpanel">
+									<div class="card">
+										<div class="card-body">
+											<h5 class="card-title">
+												<strong>Logistica</strong>
+											</h5>
+											<div class="row">
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputLastName">
+														Destinatario</label> <select class=" form-control custom-select"
+														id="pais" required>
+														<option selected disabled value="">Seleccione...</option>
+														<option>...</option>
+													</select>
+												</div>
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputLastName">
+														Comentario </label>
+													<textarea class="form-control" name="" id="" cols="30"
+														rows="5"></textarea>
+												</div>
+											</div>
+											<div class="row">
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputLastName">
+														Destinatario de la factura</label> <select
+														class=" form-control custom-select" id="pais" required>
+														<option selected disabled value="">Seleccione...</option>
+														<option>...</option>
+													</select>
+												</div>
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputLastName">
+														Comentario </label>
+													<textarea class="form-control" name="" id="" cols="30"
+														rows="5"></textarea>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputLastName">
+														Clase de entrega</label> <select
+														class=" form-control custom-select" id="pais" required>
+														<option selected disabled value="">Seleccione...</option>
+														<option>...</option>
+													</select>
+												</div>
+												<div class="mb-3 col-md-6">
+													<label class="form-label" for="inputLastName">
+														Permitir entrega parcial</label> <input class="form-check-input"
+														type="checkbox" id="inlineFormCheck">
+												</div>
+											</div>
+											<hr>
+
+											<div class="card-body">
+
+												<div class="row">
+
+													<div class="row">
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputLastName">
+																Empleado de ventas</label> <select
+																class=" form-control custom-select" id="pais" required>
+																<option selected disabled value="">Seleccione...</option>
+																<option>...</option>
+															</select>
+														</div>
+
+
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputFirstName">Total
+																antes del descuento</label> <input type="text"
+																class="form-control" id="inputFirstName" placeholder="">
+														</div>
+
+													</div>
+													<div class="row">
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputLastName">
+																Comentario </label>
+															<textarea class="form-control" name="" id="" cols="30"
+																rows="5"></textarea>
+														</div>
+
+														<div class="mb-3 col-md-2">
+															<label class="form-label" for="inputFirstName">Descuento
+																%</label> <input type="text" class="form-control"
+																id="inputFirstName" placeholder="">
+														</div>
+														<div class="mb-3 col-md-4">
+															<label class="form-label" for="inputFirstName">Valor</label>
+															<input type="text" class="form-control"
+																id="inputFirstName" placeholder="">
+														</div>
+
+													</div>
+
+													<div class="row">
+														<div class="mb-3 col-md-6"></div>
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputFirstName">Impuestos</label>
+															<input type="text" class="form-control"
+																id="inputFirstName" placeholder="">
+														</div>
+
+													</div>
+
+													<div class="row">
+														<div class="mb-3 col-md-6"></div>
+
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputFirstName">Cantidad
+																Total</label> <input type="text" class="form-control"
+																id="inputFirstName" placeholder="">
+														</div>
+													</div>
+													<div class="row">
+														<div class="mb-3 col-md-6"></div>
+														<div class="mb-3 col-md-6">
+															<label class="form-label" for="inputFirstName">Total
+																del documento</label> <input type="text" class="form-control"
+																id="inputFirstName" placeholder="">
+														</div>
+													</div>
+
+
+
+
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+
+								<!-- Inicio prueba tabla popup -->
+								<div class="modal fade" id="mydatatable" tabindex="-1">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content"
+											style="overflow: scroll; height: 300px; width: 500px;">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Clientes</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<table th:fragment="listar" id="mydatatable-modal"
+													class="display nowrap records_list table table-striped table-bordered table-hover">
+													<thead class="">
+
+
+
+														<tr>
+															<th>Seleccione</th>
+															<th>Codigo</th>
+															<th>Nombre Cliente</th>
+															<th>Grupo Ventas</th>
+															<th>NIT</th>
+															<th>Correo</th>
+															<th>Telefono</th>
+															<th>AddID</th>
+															<th>SlpCode</th>
+															<th>U_HBT_RegTrib</th>
+															<th>U_HBT_TipDoc</th>
+															<th>Medio Magnetico</th>
+															<th>U_HBT_TipEnt</th>
+															<th>Nombres</th>
+															<th>Apellido1</th>
+															<th>Apellido2</th>
+															<th>U_HBT_Nacional</th>
+															<th>U_HBT_TipExt</th>
+															<th>U_HBT_ResFis</th>
+															<th>GroupNum</th>
+															<th>ListNum</th>
+															<th>Descuento</th>
+															<th>CreditLine</th>
+															<th>DebtLine</th>
+															<th>Genero</th>
+															<th>Catalogos Activos</th>
+															<th>Contraseña</th>
+
+
+
+														</tr>
+													</thead>
+													<tbody>
+
+
+														<tr th:each="ocrd:  ${ocrds}">
+															<td><a class="btn btn-success btn-xs color--boton"
+																th:href="@{/ordencompra/} + ${ocrd.CardCode}">Select</a></td>
+															<td th:text="${ocrd.CardCode}"></td>
+															<td th:text="${ocrd.CardName}"></td>
+															<td th:text="${ocrd.GroupCode}"></td>
+															<td th:text="${ocrd.LicTradNum}"></td>
+															<td th:text="${ocrd.E_Mail}"></td>
+															<td th:text="${ocrd.Phone1}"></td>
+															<td th:text="${ocrd.AddID}"></td>
+															<td th:text="${ocrd.SlpCode}"></td>
+															<td th:text="${ocrd.U_HBT_RegTrib}"></td>
+															<td th:text="${ocrd.U_HBT_TipDoc}"></td>
+															<td th:text="${ocrd.U_HBT_MunMed}"></td>
+															<td th:text="${ocrd.U_HBT_TipEnt}"></td>
+															<td th:text="${ocrd.U_HBT_Nombres}"></td>
+															<td th:text="${ocrd.U_HBT_Apellido1}"></td>
+															<td th:text="${ocrd.U_HBT_Apellido2}"></td>
+															<td th:text="${ocrd.U_HBT_Nacional}"></td>
+															<td th:text="${ocrd.U_HBT_TipExt}"></td>
+															<td th:text="${ocrd.U_HBT_ResFis}"></td>
+															<td th:text="${ocrd.GroupNum}"></td>
+															<td th:text="${ocrd.Listanum}"></td>
+															<td th:text="${ocrd.Discount}"></td>
+															<td th:text="${ocrd.CreditLine}"></td>
+															<td th:text="${ocrd.DebtLine}"></td>
+															<td th:text="${ocrd.U_GSP_GENDER}"></td>
+															<td th:text="${ocrd.U_CatalogosActivos}"></td>
+															<td th:text="${ocrd.U_CRMContrasena}"></td>
+
+
+
+
+														</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+											<script type="text/javascript">
+												$(document)
+														.ready(
+																function() {
+																	$(
+																			'#mydatatable-modal tfoot th')
+																			.each(
+																					function() {
+																						var title = $(
+																								this)
+																								.text();
+																						$(
+																								this)
+																								.html(
+																										'<input type="text" placeholder="Filtrar.." />');
+																					});
+
+																	var table = $(
+																			'#mydatatable-modal')
+																			.DataTable(
+																					{
+																						"dom" : 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
+																						"responsive" : false,
+																						"language" : {
+																							"url" : "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+																						},
+																						"order" : [ [
+																								0,
+																								"desc" ] ],
+																						"initComplete" : function() {
+																							this
+																									.api()
+																									.columns()
+																									.every(
+																											function() {
+																												var that = this;
+
+																												$(
+																														'ocrd',
+																														this
+																																.footer())
+																														.on(
+																																'keyup change',
+																																function() {
+																																	if (that
+																																			.search() !== this.value) {
+																																		that
+																																				.search(
+																																						this.value)
+																																				.draw();
+
+																																	}
+																																});
+																											})
+																						}
+																					});
+																	$(
+																			"#mydatatable-modal")
+																			.dataTable();
+																});
+											</script>
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+
+
+								<button type="button" class="btn btn-success">Guardar</button>
+								<button type="button" class="btn btn-primary">Limpiar</button>
+								<button type="button" class="btn btn-danger">Regresar
+									consulta</button>
+							</div>
+						</div>
+					</div>
+			</main>
+
+			<footer th:replace="index :: footer"></footer>
+
+		</div>
+	</div>
+
+	<script src="js/app.js"></script>
+
+</body>
+
+</html>

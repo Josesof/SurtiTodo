@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="index:: head">
+</head>
+
+
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<body>
+
+
+
+
+
+	<div class="wrapper">
+		<header th:replace="index :: menu"></header>
+		<br> <br>
+
+
+		<div class="container py-4">
+
+
+			<div class="card bg-ligth text-black">
+
+				<div class="card-header" th:text="${titulo}"></div>
+				<h4>
+					<td><a class="btn btn-success btn-xs color--boton"
+						th:href="@{/listar/}">Volver</a></td>
+				</h4>
+
+				<div class="card-body">
+
+					<!-- th:action="@{/form}"  hace referencia a el formulario en controller  th:object="${cliente}" objeto cliente-->
+					<form th:action="@{/carrito/}" th:object="${ordencompra}"
+						method="post">
+						<div class="row">
+						
+							
+
+							<div class="row">
+
+								<div class="form-group mb-2 col-md-3 ">
+									<label class="col-sm-2 col-form-label" th:text="Cliente"></label>
+									<input th:value="${ordencompra.CardName} " class="form-control"
+										disabled="disabled">
+								</div>
+
+								
+								
+								<div class="form-group mb-3 col-md-6   ">
+								<label for="buscar_producto" class="col-sm-2 col-form-label"
+									th:text="'Buscar producto'"></label>
+								<div class="col-sm-4">
+									<input type="text" name="buscar_producto" id="buscar_producto"
+										class="form-control">
+								</div>
+							</div>
+								
+
+
+							</div>
+
+
+							<div class="row">
+
+
+
+								<div class="form-group mb-2 col-md-3 ">
+									<label class="col-sm-4 col-form-label">Nombre cliente</label>
+									<input th:field="*{CardName}" class="form-control">
+								</div>
+
+								<div class="form-group mb-2 col-md-3 ">
+									<label class="col-sm-6 col-form-label">Numero
+										documento</label> <input th:field="*{DocNum}" class="form-control">
+								</div>
+
+
+
+							</div>
+
+							<div class="row">
+
+								<div class="form-group mb-2 col-md-3 ">
+									<label class="col-sm-4 col-form-label">Codigo Cliente</label>
+									<input th:field="*{CardCode}" class="form-control">
+								</div>
+
+								<div class="form-group mb-2 col-md-3 ">
+									<label class="col-sm-4 col-form-label">Fecha Documento</label>
+									<input type="date" th:field="*{DocDate}" class="form-control">
+
+								</div>
+
+							</div>
+
+							<div class="row">
+
+								<div class="form-group mb-2 col-md-3 ">
+									<label class="col-sm-4 col-form-label">Fecha
+										vencimiento</label> <input type="date" th:field="*{DocDueDate}"
+										class="form-control">
+								</div>
+
+								<div class="form-group mb-2 col-md-3 ">
+									<label class="col-sm-6 col-form-label">Estado
+										documento</label> <input value="estado" th:field="*{DocStatus}"
+										class="form-control">
+								</div>
+
+
+
+							</div>
+
+
+							<div class="row">
+
+								<div class="form-group mb-2 col-md-6 ">
+									<label class="form-label" for="inputLastName">
+										Comentario </label>
+									<textarea th:field="*{Comments}" class="form-control" name=""
+										id="" cols="30" rows="5"></textarea>
+								</div>
+
+							</div>
+
+
+							<div class="row">
+
+								<div class="form-group mb-3 col-md-2 ">
+									<label class="col-sm-4 col-form-label" th:text="Descuento"></label>
+									<input th:field="*{DiscSum}" class="form-control">
+								</div>
+
+								<div class="form-group mb-3 col-md-2 ">
+									<label class="col-sm-4 col-form-label" th:text="Total"></label>
+									<input th:field="*{DocTotal}" class="form-control">
+								</div>
+
+							</div>
+
+							<div class="row">
+
+								<div class="form-group mb-3 col-md-2 ">
+									<label class="col-sm-12 col-form-label">Serie
+										facturacion</label> <input type="text" th:field="*{Series}"
+										class="form-control">
+								</div>
+
+								<div class="form-group mb-3 col-md-2 ">
+									<label class="col-sm-12 col-form-label">Numero
+										referencia</label> <input th:field="*{NumAtCard}" class="form-control">
+								</div>
+
+							</div>
+
+
+						
+
+							<table th:replace="factura/plantilla-items :: itemsFactura"></table>
+
+							<table id="cargarItemProductos"
+								class="table table-sm  table-striped table-hover">
+								<thead>
+									<tr>
+										<th>Nombre</th>
+										<th>Precio</th>
+										<th>Cantidad</th>
+										<th>Total</th>
+										<th>Eliminar</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+
+							</table>
+							<br> <br>
+							<h5>
+								Total: <span class="babge  badge-secondary" id="gran_total">0</span>
+							</h5>
+
+
+
+
+							<div class="form-group row">
+								<div class="col-sm-6">
+									<input type="submit" th:value="${titulo}"
+										class="btn btn-secondary" />
+								</div>
+							</div>
+
+						</div>
+					</form>
+
+
+				</div>
+
+			</div>
+			<footer th:replace="index :: footer"></footer>
+		</div>
+
+	</div>
+
+	<script th:replace="factura/jss/autocomplete-productos :: javascript"></script>
+
+
+</body>
+</html>

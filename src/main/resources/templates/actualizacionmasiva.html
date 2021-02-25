@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="index:: head">
+</head>	
+
+<body>
+    <div class="wrapper">
+      <header th:replace="index :: menu"></header>
+
+        <div class="main">
+             <nav class="navbar navbar-expand navbar-light navbar-bg">
+                <a class="sidebar-toggle d-flex">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+
+
+
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav navbar-align">
+                        <li class="nav-item dropdown">
+                            <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-toggle="dropdown">
+                                <div class="position-relative">
+                                    <i class="align-middle" data-feather="bell"></i>
+                                    <span class="indicator">4</span>
+                                </div>
+                            </a>
+                        </li>
+                   
+
+
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="content">
+                <div class="container-fluid p-0">
+                    <h1 class="h3 mb-3"><strong> Actualizacion Masiva </strong></h1>
+
+                    <div class="row">
+                        <div class="col-md-9 col-xl-10">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="account" role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label" for="inputFirstName">Cliente Inicial</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="inputFirstName"
+                                  placeholder=""
+                                />
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label class="form-label" for="inputLastName">
+                                  Fecha inicia
+                                </label>
+                                                            <input type="date" class="form-control" id="inputFirstName" placeholder="" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label" for="inputUsername">Cliente Inicial
+                                </label>
+                                                            <input type="text" class="form-control" id="inputUsername" placeholder="" />
+                                                        </div>
+
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label" for="inputLastName">
+                                  Fecha final
+                                </label>
+                                                            <input type="date" class="form-control" id="inputFirstName" placeholder="" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label" for="inputUsername">Vendedor Inicial</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="inputUsername"
+                                  placeholder=""
+                                />
+                              </div>
+
+                              <div class="mb-3 col-md-6">
+                                <label class="form-label" for="inputUsername"
+                                  >Nro Pedido Inicial</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="inputUsername"
+                                  placeholder=""
+                                />
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="mb-3 col-md-6">
+                                <label class="form-label" for="inputUsername"
+                                  >Vendedor Final</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="inputUsername"
+                                  placeholder=""
+                                />
+                              </div>
+
+                              <div class="mb-3 col-md-6">
+                                <label class="form-label" for="inputUsername"
+                                  >Nro Pedido Final</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="inputUsername"
+                                  placeholder=""
+                                />
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="mb-3 col-md-6">
+                                <label class="form-label" for="inputLastName">
+                                  Estado de Pedido
+                                </label>
+                                                            <select class="form-control custom-select" id="inputLastName" required>
+                                  <option selected disabled value="">
+                                    Seleccione...
+                                  </option>
+                                  <option>...</option>
+                                </select>
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label" for="inputLastName">
+                                  Autorizado
+                                </label>
+                                                            <select class="form-control custom-select" id="inputLastName" required>
+                                  <option selected disabled value="">
+                                    Seleccione...
+                                  </option>
+                                  <option>...</option>
+                                </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h3 class="card-title mb-0">
+                                                            <strong>Actualizacion</strong>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label" for="inputLastName">
+                                    Autorizado
+                                  </label>
+                                                                <select class="form-control custom-select" id="inputLastName" required>
+                                    <option selected disabled value="">
+                                      Seleccione...
+                                    </option>
+                                    <option>...</option>
+                                  </select>
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label" for="inputLastName">Fecha Despacho</label
+                                  >
+                                  <input
+                                    type="date"
+                                    class="form-control"
+                                    id="inputLastName"
+                                    placeholder=""
+                                  />
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="mb-3 col-md-6">
+                                  <label class="form-label" for="inputUsername"
+                                    >Numero Guia</label
+                                  >
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="inputUsername"
+                                    placeholder=""
+                                  />
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                  <label class="form-label" for="inputLastName">
+                                    Transportadora
+                                  </label>
+                                                                <select class="form-control custom-select" id="inputLastName" required>
+                                    <option selected disabled value="">
+                                      Seleccione...
+                                    </option>
+                                    <option>...</option>
+                                  </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <label class="form-label" for="inputUsername">Comentarios Surtitodo</label
+                              >
+                              <textarea
+                                type="text"
+                                class="form-control"
+                                id="inputUsername"
+                                placeholder=""
+                              >
+                              </textarea>
+                            </div>
+                          </div>
+
+                          <button type="button" class="btn btn-primary">
+                            Buscar
+                          </button>
+                        </form>
+                      </div>
+
+                      <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title mb-0">
+                            <strong>Pedidos</strong>
+                          </h3>
+                        </div>
+                        <div class="card-body">
+
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-primary">
+                        Aceptar
+                      </button>
+                      <button type="button" class="btn btn-success">
+                        Limpiar
+                      </button>
+                      <button type="button" class="btn btn-dark">
+                        Cancelar
+                      </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+       <footer th:replace="index :: footer"></footer>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+
+</html>

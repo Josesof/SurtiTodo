@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="index:: head">
+</head>
+<link rel="stylesheet"
+	href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+
+<!-- Required meta tags -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
+
+<!-- Datatables -->
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.css">
+<script
+	src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.js"></script>
+
+<body>
+
+	
+	
+  
+	
+<div class="wrapper">
+		<header th:replace="index :: menu"></header>
+		<br>
+			<br>
+
+
+	<div class="container py-4">
+
+		<div class="card bg-ligth text-black">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+            <!-- 
+            
+              <h4 class="card-title">
+					<a class="btn btn-outline-warning btn-xs"
+						th:href="@{'/ver/' + ${factura.cliente.id}}"
+						th:text="'&laquo;volver'"></a>
+				</h4>
+            
+             -->
+				
+
+
+
+
+
+				<!-- th:action="@{/form}"  hace referencia a el formulario en controller  th:object="${cliente}" objeto cliente-->
+				<form th:action="@{/carrito/}" th:object="${ordencompra}"
+					method="post">
+
+					<div class="form-group row ">
+						<label class="col-sm-2 col-form-label" th:text="Cliente"></label>
+						<div class="col-sm-6">
+							<input
+								th:value="${ordencompra.CardCode}  "
+								class="form-control" disabled="disabled">
+						</div>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+
+	<!--
+					<div class="form-group row ">
+						<label class="col-sm-2 col-form-label" th:text="'Comments'"></label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{ordencompra.Comments}" class="form-control" th:errorclass="'form-control is-invalid'" />
+					 <div class="invalid-feedback" th:if="${#fields.hasErrors('Comments')}" th:errors="*{Comments}"></div> 
+						</div>
+					</div>
+
+-->	
+					
+
+					<div class="form-group row ">
+						<label for="buscar_producto" class="col-sm-2 col-form-label"
+							th:text="'Buscar producto'"></label>
+						<div class="col-sm-6">
+							<input type="text" name="buscar_producto" id="buscar_producto"
+								class="form-control">
+						</div>
+					</div>
+					<!-- <table th:replace="factura/plantilla-items :: itemsFactura"></table> -->
+					
+					
+					<table id="cargarItemProductos" class="table table-sm  table-striped table-hover my-4">
+					<thead>
+					<tr>
+					<th>Id</th>
+					<th>Nombre</th>					
+					<th>Cantidad</th>
+					<th>Status</th>
+					<th>Total</th>	
+					<th>Eliminar</th>					
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="ordencompra: ${ordencompra.oCRD}">
+					<td th:text="${ordencompra.DocEntry}"></td>
+					<td th:text="${ordencompra.CardName}"></td>	
+					<td th:text="${ordencompra.CardCode}"></td>				
+					<td th:text="${ordencompra.DocStatus}"></td>
+					<td th:text="${ordencompra.DocTotal}"></td>
+					 
+					</tr>
+					</tbody>	
+							
+					</table>
+					
+					<h5>Total<span class="babge  badge-secondary" id="gran_total">0</span></h5>		
+
+					<div class="form-group ">
+						<div class="col-sm-6">
+							<input type="submit" th:value="${titulo}"
+								class="btn btn-secondary" />
+						</div>
+					</div>
+
+
+				</form>
+				
+				
+			</div>
+		</div>
+	</div>
+	
+		</div>
+	 <footer th:replace="index :: footer"></footer>
+		
+	<!-- <script th:replace="factura/jss/autocomplete-productos :: javascript"></script>  -->
+	
+	 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+</body>
+</html>
