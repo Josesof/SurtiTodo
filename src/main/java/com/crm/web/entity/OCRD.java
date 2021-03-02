@@ -14,18 +14,24 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true )
 @Entity(name = "OCRD")
 public class OCRD implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	
+	
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name="system-uuid", strategy = "uuid")
 	@Column(name = "CardCode",nullable = false, length= 255)	
-	private String CardCode;
-	 
-	
+	private String CardCode;	
 	
 
 	@Column(name = "CardName")
@@ -83,7 +89,7 @@ public class OCRD implements Serializable {
 	private long GroupNum;
 
 	@Column(name = "ListNum")
-	private long Listanum;
+	private long ListNum;
 
 	@Column(name = "Discount")
 	private long Discount;
@@ -118,7 +124,7 @@ public class OCRD implements Serializable {
 	public OCRD(String cardCode, String cardName, int groupCode, String licTradNum, String e_Mail, String phone1,
 			String addID, int slpCode, String u_HBT_RegTrib, String u_HBT_TipDoc, String u_HBT_MunMed,
 			String u_HBT_TipEnt, String u_HBT_Nombres, String u_HBT_Apellido1, String u_HBT_Apellido2,
-			String u_HBT_Nacional, String u_HBT_TipExt, String u_HBT_ResFis, long groupNum, long listanum,
+			String u_HBT_Nacional, String u_HBT_TipExt, String u_HBT_ResFis, long groupNum, long listNum,
 			long discount, long creditLine, long debtLine, String u_GSP_GENDER, String u_CatalogosActivos,
 			String u_CRMContrasena, CRD1 crd1, List<ORDR> oRDRS) {
 		super();
@@ -141,7 +147,7 @@ public class OCRD implements Serializable {
 		U_HBT_TipExt = u_HBT_TipExt;
 		U_HBT_ResFis = u_HBT_ResFis;
 		GroupNum = groupNum;
-		Listanum = listanum;
+		ListNum = listNum;
 		Discount = discount;
 		CreditLine = creditLine;
 		DebtLine = debtLine;
@@ -304,12 +310,12 @@ public class OCRD implements Serializable {
 		GroupNum = groupNum;
 	}
 
-	public long getListanum() {
-		return Listanum;
+	public long getListNum() {
+		return ListNum;
 	}
 
-	public void setListanum(long listanum) {
-		Listanum = listanum;
+	public void setListNum(long listNum) {
+		ListNum = listNum;
 	}
 
 	public long getDiscount() {

@@ -8,12 +8,18 @@ import java.util.Map;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.client.RestTemplate;
 
+import com.crm.web.Conection;
 import com.crm.web.entity.OCRD;
 import com.crm.web.entity.OITM;
 import com.crm.web.entity.OITW;
@@ -34,8 +40,23 @@ public class OcrdImpl {
 
 	@Autowired
 	private OitmRepository oitmRepository;
+	
+	
 
 	private JdbcTemplate jdbcTemplate;
+	
+	
+	final static String URLBusinessPartners = "https://192.168.10.3:50000/b1s/v1/BusinessPartners";
+	
+	public String  findAllOcrds(){
+		 RestTemplate restTemplate = new RestTemplate();
+		 
+		 return restTemplate.getForObject(URLBusinessPartners, String.class);
+		    
+		
+	}
+	
+	
 
 	public Collection<OCRD> findAllActiveUsersNative() {
 
@@ -81,13 +102,18 @@ public class OcrdImpl {
 	public OCRD finByCardCode(String term) {
 		return ocrdRepository.finByCardCode(term);
 	}
+	
+	public void save(OCRD ocrd) {
+		// TODO Auto-generated method stub
+		ocrdRepository.save(ocrd);
+	}
 
 	public void saveSocio(String CardCode, String CardName, int GroupCode, String LicTradNum, String E_Mail,
 			String Phone1, String AddID, int SlpCode, String U_HBT_RegTrib, String U_HBT_TipDoc, String U_HBT_MunMed,
 			String U_HBT_TipEnt, String U_HBT_Nombres, String U_HBT_Apellido1, String U_HBT_Apellido2,
 			String U_HBT_Nacional, String U_HBT_TipExt, String U_HBT_ResFis, int GroupNum, long ListNum, long Discount,
-			long CreditLine, int DebtLine, String U_GSP_GENDER, String U_CatalogosActivos, String U_CRMContrasena,
-			String Address, String City, String Country, String U_HBT_DirMM) {
+			long CreditLine, int DebtLine, String U_GSP_GENDER, String U_CatalogosActivos, String U_CRMContrasena
+			) {
 
 		SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 
@@ -120,10 +146,7 @@ public class OcrdImpl {
 		inParamMap.put("GroupCode", U_GSP_GENDER);
 		inParamMap.put("CardCode", U_CatalogosActivos);
 		inParamMap.put("CardName", U_CRMContrasena);
-		inParamMap.put("GroupCode", Address);
-		inParamMap.put("CardCode", City);
-		inParamMap.put("CardName", Country);
-		inParamMap.put("GroupCode", U_HBT_DirMM);
+		
 		SqlParameterSource in = new MapSqlParameterSource(inParamMap);
 
 		Map<String, Object> simpleJdbcCallResult = simpleJdbcCall.execute(in);
